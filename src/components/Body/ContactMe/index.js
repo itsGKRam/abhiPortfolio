@@ -1,9 +1,32 @@
 import { Center, FormControl, FormLabel, Text, VStack } from '@chakra-ui/react';
 import { Button, Form, Input, Tabs } from 'antd';
-import React from 'react';
+import emailjs from 'emailjs-com';
+import React, { useState } from 'react';
 
 export default function ContactMe() {
 	const { TabPane } = Tabs;
+	const [result, showResult] = useState(false);
+	const sendEmail = (e) => {
+		e.preventDefault();
+		emailjs
+			.sendForm(
+				'testing1234@',
+				'template_h22gow7',
+				e.target,
+				'user_BgpP8c8JlDKbbB2Tj8Idl',
+			)
+			.then(
+				(result) => {
+					console.log(result.text);
+				},
+				(error) => {
+					console.log(error.text);
+				},
+			);
+		e.target.reset();
+		showResult(true);
+	};
+
 	return (
 		<Center
 			height={`calc(100vh - 50px)`}
@@ -27,7 +50,7 @@ export default function ContactMe() {
 				<Text fontSize={`3xl`} fontWeight={`bold`}>
 					Contact Me
 				</Text>
-				<Form style={{ width: '100%' }}>
+				<Form style={{ width: '100%' }} onSubmit={sendEmail}>
 					<VStack width='full' spacing='-4'>
 						<FormControl>
 							<FormLabel marginBottom='0' fontWeight='medium'>
@@ -92,6 +115,7 @@ export default function ContactMe() {
 							htmlType='submit'
 							style={{ width: '100%' }}
 							type='primary'
+							value='Send'
 						>
 							Submit
 						</Button>

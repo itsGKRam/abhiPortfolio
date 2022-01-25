@@ -1,6 +1,7 @@
 window.WebName = 'Abhi';
 window.UserName = 'Abhinay';
-window.CoreSkills = ['Android Studios', 'React.js', 'Node.js', 'Next.js'];
+// window.CoreSkills = ['Android Studios', 'React.js', 'Node.js', 'Next.js'];
+window.CoreSkills = ['Student', 'Front-end Developer'];
 window.skills = [
 	{
 		name: 'Languages',
